@@ -1,6 +1,7 @@
 package com.forrestlmj.businessportraits.controller;
 
 
+import com.forrestlmj.businessportraits.dao.HelloMessage;
 import com.forrestlmj.businessportraits.service.HelloService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,6 +9,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 @Api(tags = {"hello world模块"})
 @RestController
@@ -28,4 +30,9 @@ public class HelloController {
         return helloService.sayHi()+param;
     }
 
+    @ApiOperation(value = "restful风格的hello message接口-GET",notes = "请求路径中带有hello message id的请求标志")
+    @GetMapping("/hello/meassge/{id}")
+    public HelloMessage helloMessage(@PathVariable @ApiParam(value = "HelloMessage", defaultValue = "1") String id){
+        return new HelloMessage(id,"你好","杨先生");
+    }
 }
