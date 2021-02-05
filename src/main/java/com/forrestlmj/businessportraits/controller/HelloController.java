@@ -32,7 +32,7 @@ public class HelloController {
 
     @ApiOperation(value = "restful风格的hello message接口-GET",notes = "请求路径中带有hello message id的请求标志")
     @GetMapping("/hello/meassge/{id}")
-    public HelloMessage helloMessage(@PathVariable @ApiParam(value = "HelloMessage", defaultValue = "1") String id){
+    public HelloMessage helloMessage(@PathVariable @ApiParam(value = "HelloMessage", defaultValue = "1") Integer id){
         return new HelloMessage(id,"你好","杨先生");
     }
 }
