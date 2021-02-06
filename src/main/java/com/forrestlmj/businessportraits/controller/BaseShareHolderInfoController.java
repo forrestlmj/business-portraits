@@ -6,11 +6,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @Api(tags = {"股东信息接口"})
-@RestController
+@RestController()
 public class BaseShareHolderInfoController {
     @Autowired
     private BaseShareHolderInfoService baseShareHolderInfoService;
@@ -20,4 +19,21 @@ public class BaseShareHolderInfoController {
     public BaseShareholderInfo getById(@PathVariable @ApiParam(value = "股东id", defaultValue = "1") Integer id){
         return baseShareHolderInfoService.getById(id);
     }
+
+    @PostMapping("/sharehodler")
+    @ApiOperation(value = "增加股东")
+    public BaseShareholderInfo addShareholder(@RequestBody BaseShareholderInfo baseShareholderInfo){
+        return baseShareHolderInfoService.save(baseShareholderInfo);
+    }
+    @PutMapping("/sharehodler")
+    @ApiOperation(value = "增加股东")
+    public BaseShareholderInfo updateShareholder(@RequestBody BaseShareholderInfo baseShareholderInfo){
+        return baseShareHolderInfoService.save(baseShareholderInfo);
+    }
+    @DeleteMapping("/shareholder/{id}")
+    @ApiOperation(value = "删除股东")
+    public void deleteShareholder(@PathVariable @ApiParam(value = "股东id", defaultValue = "1") Integer id){
+        baseShareHolderInfoService.delete(id);
+    }
+
 }
